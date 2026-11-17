@@ -21,7 +21,8 @@ export function createViewer() {
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
-  renderer.shadowMap.enabled = true;
+  const QS = new URLSearchParams(location.search);
+  renderer.shadowMap.enabled = !QS.has('noshadow');
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   const canvas = renderer.domElement;
   canvas.className = 'gl';
@@ -216,6 +217,16 @@ export function createViewer() {
     if (geo || wood) { if (geo) { buildBase(); } await buildTop(); }
     if (wood || geo) await applyWood();
     applyExplode(); frame(); kick();
+    if (!visible || !running) prewarm();
+  }
+  // compile shaders and upload textures off-screen (async where the GPU allows), so the first
+  // time the table scrolls into view there is nothing left to prepare
+  let warming = null;
+  function prewarm() {
+    if (warming) return warming;
+    warming = (renderer.compileAsync ? renderer.compileAsync(scene, camera) : Promise.resolve(renderer.compile(scene, camera)))
+      .catch(() => {}).then(() => new Promise(r => setTimeout(r, 0))).then(() => { place(); renderer.render(scene, camera); needs = false; warming = null; });
+    return warming;
   }
 
   // ---------- camera, drag-to-turn ----------
@@ -239,7 +250,7 @@ export function createViewer() {
   }
 
   // ---------- render loop on demand ----------
-  let host = null, running = false, needs = true, visible = false, last = 0, labels = [];
+  let host = null, running = false, needs = true, visible = false, last = 0, labels = [], paused = false;
   const kick = () => { needs = true; if (!running && visible) { running = true; requestAnimationFrame(loop); } };
   function size() {
     if (!host) return; const r = host.getBoundingClientRect(); if (!r.width) return;
@@ -251,7 +262,7 @@ export function createViewer() {
     let moving = false;
     if (!dragging) {
       if (Math.abs(vel) > .0004) { yaw += vel; vel *= .93; moving = true; }
-      else if (host?.dataset.spin && !RM) { auto = Math.min(1, auto + dt * .5); yaw += .09 * dt * auto; moving = true; }
+      else if (host?.dataset.spin && !RM && !paused) { auto = Math.min(1, auto + dt * .5); yaw += .09 * dt * auto; moving = true; }
     }
     if (tween) { moving = true; const k = Math.min(1, (t - tween.t0) / tween.d); state.explode = tween.a + (tween.b - tween.a) * (1 - (1 - k) ** 3); applyExplode(); if (k >= 1) tween = null; }
     if (moving || needs) {
@@ -266,9 +277,14 @@ export function createViewer() {
   // drag: horizontal turns the table, vertical scrolls the page (touch-action: pan-y)
   let dragging = false, px = 0, lastX = 0, lastT = 0;
   canvas.style.touchAction = 'pan-y';
-  canvas.addEventListener('pointerdown', e => { dragging = true; px = lastX = e.clientX; lastT = performance.now(); vel = 0; auto = 0; host?.classList.add('grab'); kick(); });
-  addEventListener('pointermove', e => { if (!dragging) return; const dx = e.clientX - lastX; yaw -= dx * .006; const now = performance.now(); vel = -dx * .006 * Math.min(1, 16 / Math.max(1, now - lastT)); lastX = e.clientX; lastT = now; needs = true; });
-  const up = () => { if (!dragging) return; dragging = false; host?.classList.remove('grab'); kick(); };
+  // a touch only turns the table once it is clearly sideways; a vertical swipe is left to the page and draws nothing
+  let pending = false, py = 0;
+  canvas.addEventListener('pointerdown', e => { pending = true; px = lastX = e.clientX; py = e.clientY; lastT = performance.now(); if (e.pointerType === 'mouse') startDrag(); });
+  function startDrag() { pending = false; dragging = true; vel = 0; auto = 0; host?.classList.add('grab'); kick(); }
+  addEventListener('pointermove', e => {
+    if (pending) { const dx = Math.abs(e.clientX - px), dy = Math.abs(e.clientY - py); if (dx > 8 && dx > dy * 1.3) startDrag(); else if (dy > 8) pending = false; else return; }
+    if (!dragging) return; const dx = e.clientX - lastX; yaw -= dx * .006; const now = performance.now(); vel = -dx * .006 * Math.min(1, 16 / Math.max(1, now - lastT)); lastX = e.clientX; lastT = now; needs = true; });
+  const up = () => { pending = false; if (!dragging) return; dragging = false; host?.classList.remove('grab'); kick(); };
   addEventListener('pointerup', up); addEventListener('pointercancel', up);
 
   // labels for the joinery view
@@ -276,14 +292,17 @@ export function createViewer() {
     const r = host.getBoundingClientRect(), v = new THREE.Vector3();
     for (const l of labels) {
       v.copy(l.at()).project(camera);
-      l.el.style.transform = `translate(${(v.x * .5 + .5) * r.width}px, ${(-v.y * .5 + .5) * r.height}px)`;
+      const w = l.w || (l.w = l.el.offsetWidth), x = Math.max(8, Math.min(r.width - w - 8, (v.x * .5 + .5) * r.width)), y = Math.max(10, Math.min(r.height - 120, (-v.y * .5 + .5) * r.height));
+      l.el.style.transform = `translate(${x}px, ${y}px)`;
     }
   }
   function setLabels(list) { labels = list; kick(); }
 
   // ---------- mount / visibility ----------
-  const io = new IntersectionObserver(es => { for (const e of es) if (e.target === host) { visible = e.isIntersecting; if (visible) kick(); } }, { rootMargin: '80px' });
-  const ro = new ResizeObserver(() => { size(); kick(); });
+  const io = new IntersectionObserver(es => { for (const e of es) if (e.target === host) { visible = e.isIntersecting; if (visible && (needs || host.dataset.spin)) wake(); } }, { rootMargin: '80px' });
+  const wake = () => { if (!running && visible) { running = true; requestAnimationFrame(loop); } };
+  let lastW = 0, lastH = 0;
+  const ro = new ResizeObserver(es => { const r = es[0].contentRect; if (Math.abs(r.width - lastW) < 1 && Math.abs(r.height - lastH) < 1) return; lastW = r.width; lastH = r.height; size(); kick(); });
   function mount(el) {
     if (host === el) return; if (host) { io.unobserve(host); ro.unobserve(host); }
     host = el; el.prepend(canvas); io.observe(el); ro.observe(el); frame(); size(); visible = true; kick();
@@ -298,9 +317,13 @@ export function createViewer() {
     return new Blob([data], { type: 'model/vnd.usdz+zip' });
   }
 
-  set();
+  set().then(() => {
+    const idle = window.requestIdleCallback || (f => setTimeout(f, 300));
+    idle(() => { const tmp = new THREE.Group(); for (const m of Object.values(mats)) { const x = new THREE.Mesh(new THREE.BoxGeometry(.01, .01, .01), m); x.castShadow = true; tmp.add(x); } scene.add(tmp); (renderer.compileAsync ? renderer.compileAsync(scene, camera) : Promise.resolve(renderer.compile(scene, camera))).catch(() => {}).then(() => scene.remove(tmp)); });
+  });
   return {
     canvas, mount, set, state, kick, explodeTo, setLabels, usdz, LOW, TOUCH,
+    pause: v => { paused = v; if (!v) wake(); },
     point: (name) => () => {
       const v = new THREE.Vector3(), k = state.explode * state.explode * (3 - 2 * state.explode);
       if (name === 'top') return v.set(-state.L * .25, H + .42 * k + .03, 0);

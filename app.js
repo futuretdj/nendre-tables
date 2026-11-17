@@ -20,21 +20,23 @@ $$('[data-sheet] a').forEach(a => a.addEventListener('click', () => { nav.classL
   els.forEach(e => io.observe(e));
 })();
 
-/* ---------- 3D viewer: one renderer, moved to whichever stage is on screen ---------- */
-const viewer = createViewer();
+/* ---------- 3D: the hero viewer now, the configurator's own viewer when the page is idle.
+   Each draws only when its table changes or turns, so scrolling past them costs nothing. ---------- */
 const stages = { hero: $('[data-stage="hero"]'), cfg: $('[data-stage="cfg"]') };
-viewer.mount(stages.hero);
-const vis = new Map();
-const sio = new IntersectionObserver(es => {
-  es.forEach(e => vis.set(e.target, e.intersectionRatio));
-  const h = vis.get(stages.hero) || 0, c = vis.get(stages.cfg) || 0;
-  const target = c > h ? stages.cfg : stages.hero;
-  if ((h || c) && target) viewer.mount(target);
-}, { threshold: [0, .15, .3, .5, .7, 1] });
-sio.observe(stages.hero); sio.observe(stages.cfg);
-// "ready" once the first frame with wood is drawn
-const waitReady = setInterval(() => { if (viewer.canvas.width > 10) { setTimeout(() => $$('.stage').forEach(s => s.classList.add('ready')), 600); clearInterval(waitReady); } }, 200);
-$$('.stage').forEach(s => s.addEventListener('pointerdown', () => s.classList.add('touched'), { once: true }));
+const NO3D = new URLSearchParams(location.search).has('no3d');
+const hero = NO3D ? { pause() {}, canvas: { width: 0 } } : createViewer(); if (!NO3D) hero.mount(stages.hero);
+let viewer = null, pendingSet = null;
+const cfgReady = new Promise(res => {
+  const make = () => { viewer = createViewer(); viewer.mount(stages.cfg); if (pendingSet) viewer.set(pendingSet); res(viewer); };
+  // built right after the hero, while the page is still loading and nobody is scrolling yet
+  if (!NO3D) requestAnimationFrame(() => setTimeout(make, 0));
+});
+// the hero stops turning while a finger is on the screen or the page moves; it carries on after
+let st = 0; const pauseAll = () => { hero.pause(true); clearTimeout(st); st = setTimeout(() => hero.pause(false), 450); };
+addEventListener('scroll', pauseAll, { passive: true }); addEventListener('touchmove', pauseAll, { passive: true });
+const waitReady = setInterval(() => { if (hero.canvas.width > 10) { setTimeout(() => stages.hero.classList.add('ready'), 600); clearInterval(waitReady); } }, 200);
+cfgReady.then(v => setTimeout(() => stages.cfg.classList.add('ready'), 900));
+$$('.stage').forEach(s => s.addEventListener('pointerdown', () => setTimeout(() => s.classList.add('touched'), 400), { once: true }));
 
 /* ---------- configurator ---------- */
 const form = $('[data-panel]');
@@ -85,7 +87,7 @@ function update(fromUser = true) {
   seatsSVG(c, s); animPrice(s.price);
   $('[data-cfg-text]').value = text(c);
   cancelAnimationFrame(raf);
-  raf = requestAnimationFrame(() => viewer.set({ wood: c.wood, L: c.L / 100, W: c.W / 100, shape: c.shape, base: c.base, finish: c.finish }));
+  raf = requestAnimationFrame(() => { pendingSet = { wood: c.wood, L: c.L / 100, W: c.W / 100, shape: c.shape, base: c.base, finish: c.finish }; if (viewer) viewer.set(pendingSet); });
   if (fromUser) history.replaceState(null, '', '#build?' + new URLSearchParams(Object.entries(c)).toString());
 }
 form.addEventListener('input', () => update());
@@ -104,7 +106,8 @@ $$('[data-pick]').forEach(b => b.addEventListener('click', () => {
 }));
 
 // assembled / joinery
-$$('[data-view]').forEach(b => b.addEventListener('click', () => {
+$$('[data-view]').forEach(b => b.addEventListener('click', async () => {
+  const viewer = await cfgReady;
   const on = b.dataset.view === '1';
   $$('[data-view]').forEach(x => x.setAttribute('aria-pressed', x === b));
   viewer.explodeTo(on ? 1 : 0);
@@ -134,7 +137,7 @@ $('[data-reserve]').addEventListener('click', () => { $('#o-what').value = 'Rese
     }
     const lbl = $('span', btn), o = lbl.textContent; lbl.textContent = 'Preparing…';
     try {
-      const blob = await viewer.usdz();
+      const blob = await (await cfgReady).usdz();
       a.rel = 'ar'; a.href = URL.createObjectURL(blob); a.download = 'nendre-table.usdz';
       a.innerHTML = '<img alt="">'; document.body.append(a); a.click(); setTimeout(() => a.remove(), 1000);
     } catch (e) { note.hidden = false; note.textContent = 'Could not open the AR view on this device.'; }
@@ -157,11 +160,11 @@ $$('[data-swipe]').forEach(row => {
 (() => {
   const lb = $('[data-lb]'), tr = $('[data-lb-track]'), cap = $('[data-lb-cap]'), cnt = $('[data-lb-count]');
   const imgs = $$('[data-gallery] img'); const N = imgs.length; let li = 0, opener;
-  tr.innerHTML = imgs.map(i => `<li><img srcset="${i.getAttribute('srcset')}" sizes="100vw" src="${i.getAttribute('src')}" alt="${i.alt}" loading="lazy"></li>`).join('');
+  tr.innerHTML = imgs.map(i => `<li><img data-srcset="${i.getAttribute('srcset')}" sizes="100vw" data-src="${i.getAttribute('src')}" alt="${i.alt}"></li>`).join('');
   const slides = [...tr.children];
   const upd = () => { li = Math.round(tr.scrollLeft / Math.max(1, tr.clientWidth)); cap.textContent = imgs[li]?.alt || ''; cnt.textContent = (li + 1) + ' / ' + N; };
   tr.addEventListener('scroll', () => requestAnimationFrame(upd), { passive: true });
-  const open = i => { opener = document.activeElement; lb.hidden = false; document.body.style.overflow = 'hidden'; requestAnimationFrame(() => { lb.classList.add('open'); tr.scrollLeft = i * tr.clientWidth; upd(); $('[data-lb-close]').focus(); }); };
+  const open = i => { $$('img[data-src]', tr).forEach(im => { im.srcset = im.dataset.srcset; im.src = im.dataset.src; im.removeAttribute('data-src'); }); opener = document.activeElement; lb.hidden = false; document.body.style.overflow = 'hidden'; requestAnimationFrame(() => { lb.classList.add('open'); tr.scrollLeft = i * tr.clientWidth; upd(); $('[data-lb-close]').focus(); }); };
   const close = () => { lb.classList.remove('open'); document.body.style.overflow = ''; setTimeout(() => lb.hidden = true, 350); opener?.focus?.(); };
   $$('[data-open]').forEach(b => b.addEventListener('click', () => open(+b.dataset.open)));
   $('[data-lb-close]').addEventListener('click', close);
@@ -197,3 +200,20 @@ $$('[data-swipe]').forEach(row => {
 
 /* ---------- toast ---------- */
 let tt; function toast(t) { const el = $('[data-toast]'); el.textContent = t; el.classList.add('on'); clearTimeout(tt); tt = setTimeout(() => el.classList.remove('on'), 2000); }
+
+/* ---------- warm-up: fetch and decode every picture while the page is idle, one at a time,
+   so nothing is decoded in the middle of a swipe ---------- */
+(() => {
+  const idle = window.requestIdleCallback || (f => setTimeout(() => f({ timeRemaining: () => 8 }), 120));
+  const urls = ['tex/oak_sw.webp', 'tex/ash_sw.webp', 'tex/walnut_sw.webp'];
+  const imgs = $$('img[loading="lazy"]');
+  let i = 0;
+  let still = 0; addEventListener('scroll', () => { still = performance.now(); }, { passive: true });
+  const next = () => idle(async () => {
+    if (performance.now() - still < 600) return setTimeout(next, 300);
+    if (i < urls.length) { const im = new Image(); im.src = urls[i++]; try { await im.decode(); } catch {} return next(); }
+    const el = imgs[i - urls.length]; if (!el) return;
+    i++; el.loading = 'eager'; try { await el.decode(); } catch {} next();
+  }, { timeout: 1500 });
+  addEventListener('load', () => setTimeout(next, 600), { once: true });
+})();
