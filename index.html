@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Nendrė — solid-wood dining tables made to your length in Kaunas</title>
+<title>Nendrė — solid-wood furniture made to order in Kaunas</title>
 <meta name="description" content="Oak, ash and walnut dining tables built one at a time in Kaunas, Lithuania. Choose the size to the centimetre, see it in 3D and in your room, delivered and assembled.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Nendrė — solid-wood tables, built to your length">
@@ -29,13 +29,14 @@
   <div class="wrap nav__bar">
     <a class="logo" href="#top" aria-label="Nendrė, home"><svg viewBox="0 0 30 30" aria-hidden="true"><path d="M8 27c1.5-7 2-14 .5-24M15 27c0-8 .8-15 4-22M22 27c-.6-5 .2-10 2.6-14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M19 5c1.6.4 3 .1 4-1" fill="none" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round"/></svg><span>Nendrė</span></a>
     <nav class="nav__links" aria-label="Main">
-      <a href="#build">Build yours</a><a href="#woods">Woods</a><a href="#workshop">Workshop</a><a href="#delivery">Delivery</a><a href="#order">Visit &amp; order</a>
+      <a href="#collection">Collection</a><a href="#build">Build a table</a><a href="#woods">Woods</a><a href="#workshop">Workshop</a><a href="#delivery">Delivery</a><a href="#order">Visit &amp; order</a>
     </nav>
-    <a class="btn btn--ghost nav__cta" href="#samples">Order wood samples</a>
+    <button class="btn btn--ghost nav__cta olbtn" type="button" data-list-open>Order list <b data-ocount>0</b></button>
+    <button class="olbtn olbtn--m" type="button" data-list-open aria-label="Order list"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 6.5h12l-1 10H5l-1-10Z M7 6.5V5a3 3 0 0 1 6 0v1.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><b data-ocount>0</b></button>
     <button class="nav__menu" type="button" aria-expanded="false" aria-controls="sheet" data-menu><span></span><span></span><b>Menu</b></button>
   </div>
   <div class="sheet" id="sheet" data-sheet>
-    <a href="#build">Build your table</a><a href="#woods">Oak, ash, walnut</a><a href="#workshop">The workshop</a><a href="#delivery">Delivery &amp; guarantee</a><a href="#order">Visit &amp; order</a>
+    <a href="#collection">The collection</a><a href="#build">Build your table</a><a href="#woods">Oak, ash, walnut</a><a href="#workshop">The workshop</a><a href="#delivery">Delivery &amp; guarantee</a><a href="#order">Visit &amp; order</a>
     <p class="mono">Kaunas · Aleksotas · Sat 10–15 by appointment</p>
   </div>
 </header>
@@ -45,10 +46,10 @@
     <div class="wrap hero__grid">
       <div class="hero__text">
         <p class="eyebrow mono"><span class="pulse"></span>Workshop open · 11 tables in progress</p>
-        <h1>Solid-wood tables, built to your length</h1>
-        <p class="lead">Made one at a time in our workshop in Kaunas, from oak, ash or walnut. Pick the size to the centimetre, turn it in 3D, then stand it in your own room with your phone.</p>
+        <h1>Solid-wood furniture, made to order</h1>
+        <p class="lead">Tables, chairs, sofas, storage and beds, made one at a time in our workshop in Kaunas from oak, ash or walnut. Turn every piece in 3D, then stand it in your own room with your phone.</p>
         <div class="row">
-          <a class="btn" href="#build">Build your table</a>
+          <a class="btn" href="#collection">See the collection</a>
           <a class="btn btn--ghost" href="#samples">Wood samples · €15</a>
         </div>
       </div>
@@ -59,7 +60,7 @@
     </div>
     <div class="wrap">
       <dl class="facts">
-        <div><dt>From</dt><dd>€1,290</dd></div>
+        <div><dt>Pieces</dt><dd>10, in 3 woods</dd></div>
         <div><dt>Made in</dt><dd>6–8 weeks</dd></div>
         <div><dt>Delivery in Lithuania</dt><dd>Free, assembled</dd></div>
         <div><dt>Guarantee on joints</dt><dd>25 years</dd></div>
@@ -67,11 +68,121 @@
     </div>
   </section>
 
+
+  <!-- the collection -->
+  <section class="sec" id="collection" aria-labelledby="col-h">
+    <div class="wrap">
+      <div class="head head--row rv">
+        <div><p class="mono label">The collection</p><h2 id="col-h">Ten pieces, one workshop</h2><p>Everything is made in solid oak, ash or walnut, to order. Tap any piece to turn it in 3D, change the wood or fabric, or stand it in your room.</p></div>
+      </div>
+      <div class="filters" role="tablist" aria-label="Filter the collection">
+        <button type="button" role="tab" aria-selected="true" data-f="all">All <sup>10</sup></button>
+        <button type="button" role="tab" aria-selected="false" data-f="tables">Tables <sup>2</sup></button>
+        <button type="button" role="tab" aria-selected="false" data-f="seating">Seating <sup>4</sup></button>
+        <button type="button" role="tab" aria-selected="false" data-f="storage">Storage <sup>3</sup></button>
+        <button type="button" role="tab" aria-selected="false" data-f="bedroom">Bedroom <sup>1</sup></button>
+      </div>
+      <div class="pgrid" data-pgrid>
+        <article class="pcard" data-cat="tables">
+          <a href="#build" class="pcard__pic" aria-label="Nendrė dining table">
+            <img src="img/table-800.webp" srcset="img/table-800.webp 800w, img/table-1200.webp 1200w" sizes="(max-width: 639px) 260px, (max-width: 1023px) 46vw, 30vw" width="800" height="600" alt="Nendrė dining table in oak" loading="lazy" decoding="async">
+            <img class="pcard__alt" src="img/table_w-800.webp" srcset="img/table_w-800.webp 800w, img/table_w-1200.webp 1200w" sizes="(max-width: 639px) 260px, (max-width: 1023px) 46vw, 30vw" width="800" height="600" alt="" loading="lazy" decoding="async" aria-hidden="true">
+            <span class="pcard__tag mono">3D</span>
+          </a>
+          <div class="pcard__row"><h3>Nendrė dining table</h3><span class="pcard__price">From €1,290</span></div>
+          <p>Built to your length, 160–280 cm. Oak, ash or walnut, three bases.</p>
+          <div class="pcard__foot"><span class="dots3" aria-label="Oak, ash, walnut"><i class="sw sw--oak"></i><i class="sw sw--ash"></i><i class="sw sw--walnut"></i></span><a class="pcard__btn" href="#build">Build in 3D</a></div>
+        </article><article class="pcard" data-cat="tables">
+          <button type="button" data-qv="coffee" class="pcard__pic" aria-label="Sala coffee table">
+            <img src="img/coffee-800.webp" srcset="img/coffee-800.webp 800w, img/coffee-1200.webp 1200w" sizes="(max-width: 639px) 260px, (max-width: 1023px) 46vw, 30vw" width="800" height="600" alt="Sala coffee table in oak" loading="lazy" decoding="async">
+            <img class="pcard__alt" src="img/coffee_w-800.webp" srcset="img/coffee_w-800.webp 800w, img/coffee_w-1200.webp 1200w" sizes="(max-width: 639px) 260px, (max-width: 1023px) 46vw, 30vw" width="800" height="600" alt="" loading="lazy" decoding="async" aria-hidden="true">
+            <span class="pcard__tag mono">3D</span>
+          </button>
+          <div class="pcard__row"><h3>Sala coffee table</h3><span class="pcard__price">€890</span></div>
+          <p>A low table with a shelf for books and the remote. Rounded corners, no sharp edges.</p>
+          <div class="pcard__foot"><span class="dots3" aria-label="Oak, ash, walnut"><i class="sw sw--oak"></i><i class="sw sw--ash"></i><i class="sw sw--walnut"></i></span><button type="button" class="pcard__btn" data-qv="coffee">View in 3D</button></div>
+        </article><article class="pcard" data-cat="seating">
+          <button type="button" data-qv="chair" class="pcard__pic" aria-label="Rasa dining chair">
+            <img src="img/chair-800.webp" srcset="img/chair-800.webp 800w, img/chair-1200.webp 1200w" sizes="(max-width: 639px) 260px, (max-width: 1023px) 46vw, 30vw" width="800" height="600" alt="Rasa dining chair in oak" loading="lazy" decoding="async">
+            <img class="pcard__alt" src="img/chair_w-800.webp" srcset="img/chair_w-800.webp 800w, img/chair_w-1200.webp 1200w" sizes="(max-width: 639px) 260px, (max-width: 1023px) 46vw, 30vw" width="800" height="600" alt="" loading="lazy" decoding="async" aria-hidden="true">
+            <span class="pcard__tag mono">3D</span>
+          </button>
+          <div class="pcard__row"><h3>Rasa dining chair</h3><span class="pcard__price">€390</span></div>
+          <p>Steam-bent back rail, wedged joints. Solid seat or upholstered.</p>
+          <div class="pcard__foot"><span class="dots3" aria-label="Oak, ash, walnut"><i class="sw sw--oak"></i><i class="sw sw--ash"></i><i class="sw sw--walnut"></i></span><button type="button" class="pcard__btn" data-qv="chair">View in 3D</button></div>
+        </article><article class="pcard" data-cat="seating">
+          <button type="button" data-qv="bench" class="pcard__pic" aria-label="Suolas bench">
+            <img src="img/bench-800.webp" srcset="img/bench-800.webp 800w, img/bench-1200.webp 1200w" sizes="(max-width: 639px) 260px, (max-width: 1023px) 46vw, 30vw" width="800" height="600" alt="Suolas bench in oak" loading="lazy" decoding="async">
+            <img class="pcard__alt" src="img/bench_w-800.webp" srcset="img/bench_w-800.webp 800w, img/bench_w-1200.webp 1200w" sizes="(max-width: 639px) 260px, (max-width: 1023px) 46vw, 30vw" width="800" height="600" alt="" loading="lazy" decoding="async" aria-hidden="true">
+            <span class="pcard__tag mono">3D</span>
+          </button>
+          <div class="pcard__row"><h3>Suolas bench</h3><span class="pcard__price">€690</span></div>
+          <p>Seats three at the table, or one with boots in the hall.</p>
+          <div class="pcard__foot"><span class="dots3" aria-label="Oak, ash, walnut"><i class="sw sw--oak"></i><i class="sw sw--ash"></i><i class="sw sw--walnut"></i></span><button type="button" class="pcard__btn" data-qv="bench">View in 3D</button></div>
+        </article><article class="pcard" data-cat="seating">
+          <button type="button" data-qv="sofa" class="pcard__pic" aria-label="Debesis sofa">
+            <img src="img/sofa-800.webp" srcset="img/sofa-800.webp 800w, img/sofa-1200.webp 1200w" sizes="(max-width: 639px) 260px, (max-width: 1023px) 46vw, 30vw" width="800" height="600" alt="Debesis sofa in oak" loading="lazy" decoding="async">
+            <img class="pcard__alt" src="img/sofa_w-800.webp" srcset="img/sofa_w-800.webp 800w, img/sofa_w-1200.webp 1200w" sizes="(max-width: 639px) 260px, (max-width: 1023px) 46vw, 30vw" width="800" height="600" alt="" loading="lazy" decoding="async" aria-hidden="true">
+            <span class="pcard__tag mono">3D</span>
+          </button>
+          <div class="pcard__row"><h3>Debesis sofa</h3><span class="pcard__price">€3,900</span></div>
+          <p>A solid-wood frame with deep feather-and-foam cushions in removable covers.</p>
+          <div class="pcard__foot"><span class="dots3" aria-label="Oak, ash, walnut"><i class="sw sw--oak"></i><i class="sw sw--ash"></i><i class="sw sw--walnut"></i></span><button type="button" class="pcard__btn" data-qv="sofa">View in 3D</button></div>
+        </article><article class="pcard" data-cat="seating">
+          <button type="button" data-qv="armchair" class="pcard__pic" aria-label="Debesis lounge chair">
+            <img src="img/armchair-800.webp" srcset="img/armchair-800.webp 800w, img/armchair-1200.webp 1200w" sizes="(max-width: 639px) 260px, (max-width: 1023px) 46vw, 30vw" width="800" height="600" alt="Debesis lounge chair in oak" loading="lazy" decoding="async">
+            <img class="pcard__alt" src="img/armchair_w-800.webp" srcset="img/armchair_w-800.webp 800w, img/armchair_w-1200.webp 1200w" sizes="(max-width: 639px) 260px, (max-width: 1023px) 46vw, 30vw" width="800" height="600" alt="" loading="lazy" decoding="async" aria-hidden="true">
+            <span class="pcard__tag mono">3D</span>
+          </button>
+          <div class="pcard__row"><h3>Debesis lounge chair</h3><span class="pcard__price">€1,650</span></div>
+          <p>The sofa's single seat. Low, deep and built for reading.</p>
+          <div class="pcard__foot"><span class="dots3" aria-label="Oak, ash, walnut"><i class="sw sw--oak"></i><i class="sw sw--ash"></i><i class="sw sw--walnut"></i></span><button type="button" class="pcard__btn" data-qv="armchair">View in 3D</button></div>
+        </article><article class="pcard" data-cat="storage">
+          <button type="button" data-qv="sideboard" class="pcard__pic" aria-label="Komoda sideboard">
+            <img src="img/sideboard-800.webp" srcset="img/sideboard-800.webp 800w, img/sideboard-1200.webp 1200w" sizes="(max-width: 639px) 260px, (max-width: 1023px) 46vw, 30vw" width="800" height="600" alt="Komoda sideboard in oak" loading="lazy" decoding="async">
+            <img class="pcard__alt" src="img/sideboard_w-800.webp" srcset="img/sideboard_w-800.webp 800w, img/sideboard_w-1200.webp 1200w" sizes="(max-width: 639px) 260px, (max-width: 1023px) 46vw, 30vw" width="800" height="600" alt="" loading="lazy" decoding="async" aria-hidden="true">
+            <span class="pcard__tag mono">3D</span>
+          </button>
+          <div class="pcard__row"><h3>Komoda sideboard</h3><span class="pcard__price">€2,450</span></div>
+          <p>Four slatted doors, adjustable shelves and brass pulls.</p>
+          <div class="pcard__foot"><span class="dots3" aria-label="Oak, ash, walnut"><i class="sw sw--oak"></i><i class="sw sw--ash"></i><i class="sw sw--walnut"></i></span><button type="button" class="pcard__btn" data-qv="sideboard">View in 3D</button></div>
+        </article><article class="pcard" data-cat="storage">
+          <button type="button" data-qv="wardrobe" class="pcard__pic" aria-label="Spinta wardrobe">
+            <img src="img/wardrobe-800.webp" srcset="img/wardrobe-800.webp 800w, img/wardrobe-1200.webp 1200w" sizes="(max-width: 639px) 260px, (max-width: 1023px) 46vw, 30vw" width="800" height="600" alt="Spinta wardrobe in oak" loading="lazy" decoding="async">
+            <img class="pcard__alt" src="img/wardrobe_w-800.webp" srcset="img/wardrobe_w-800.webp 800w, img/wardrobe_w-1200.webp 1200w" sizes="(max-width: 639px) 260px, (max-width: 1023px) 46vw, 30vw" width="800" height="600" alt="" loading="lazy" decoding="async" aria-hidden="true">
+            <span class="pcard__tag mono">3D</span>
+          </button>
+          <div class="pcard__row"><h3>Spinta wardrobe</h3><span class="pcard__price">€3,200</span></div>
+          <p>Two doors, a hanging rail and four shelves. 210 cm tall.</p>
+          <div class="pcard__foot"><span class="dots3" aria-label="Oak, ash, walnut"><i class="sw sw--oak"></i><i class="sw sw--ash"></i><i class="sw sw--walnut"></i></span><button type="button" class="pcard__btn" data-qv="wardrobe">View in 3D</button></div>
+        </article><article class="pcard" data-cat="storage">
+          <button type="button" data-qv="shelf" class="pcard__pic" aria-label="Lentyna bookcase">
+            <img src="img/shelf-800.webp" srcset="img/shelf-800.webp 800w, img/shelf-1200.webp 1200w" sizes="(max-width: 639px) 260px, (max-width: 1023px) 46vw, 30vw" width="800" height="600" alt="Lentyna bookcase in oak" loading="lazy" decoding="async">
+            <img class="pcard__alt" src="img/shelf_w-800.webp" srcset="img/shelf_w-800.webp 800w, img/shelf_w-1200.webp 1200w" sizes="(max-width: 639px) 260px, (max-width: 1023px) 46vw, 30vw" width="800" height="600" alt="" loading="lazy" decoding="async" aria-hidden="true">
+            <span class="pcard__tag mono">3D</span>
+          </button>
+          <div class="pcard__row"><h3>Lentyna bookcase</h3><span class="pcard__price">€1,290</span></div>
+          <p>Six solid shelves that will not sag under encyclopaedias.</p>
+          <div class="pcard__foot"><span class="dots3" aria-label="Oak, ash, walnut"><i class="sw sw--oak"></i><i class="sw sw--ash"></i><i class="sw sw--walnut"></i></span><button type="button" class="pcard__btn" data-qv="shelf">View in 3D</button></div>
+        </article><article class="pcard" data-cat="bedroom">
+          <button type="button" data-qv="bed" class="pcard__pic" aria-label="Sapnas bed">
+            <img src="img/bed-800.webp" srcset="img/bed-800.webp 800w, img/bed-1200.webp 1200w" sizes="(max-width: 639px) 260px, (max-width: 1023px) 46vw, 30vw" width="800" height="600" alt="Sapnas bed in oak" loading="lazy" decoding="async">
+            <img class="pcard__alt" src="img/bed_w-800.webp" srcset="img/bed_w-800.webp 800w, img/bed_w-1200.webp 1200w" sizes="(max-width: 639px) 260px, (max-width: 1023px) 46vw, 30vw" width="800" height="600" alt="" loading="lazy" decoding="async" aria-hidden="true">
+            <span class="pcard__tag mono">3D</span>
+          </button>
+          <div class="pcard__row"><h3>Sapnas bed</h3><span class="pcard__price">€2,690</span></div>
+          <p>A slatted headboard and a frame that will outlast five mattresses.</p>
+          <div class="pcard__foot"><span class="dots3" aria-label="Oak, ash, walnut"><i class="sw sw--oak"></i><i class="sw sw--ash"></i><i class="sw sw--walnut"></i></span><button type="button" class="pcard__btn" data-qv="bed">View in 3D</button></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- configurator -->
   <section class="sec" id="build" aria-labelledby="build-h">
     <div class="wrap">
       <div class="head rv">
-        <p class="mono label">Configurator</p>
+        <p class="mono label">Table configurator</p>
         <h2 id="build-h">Your table, to the centimetre</h2>
         <p>Every change is drawn the way it will be made: the boards, the edge, the joints. The price is the price, delivery and assembly in Lithuania included.</p>
       </div>
@@ -135,7 +246,7 @@
 
   <section class="sec sec--quote">
     <div class="wrap">
-      <p class="big rv">1,180 tables since 2014. Seven came back to us, <em>all of them to be made longer.</em></p>
+      <p class="big rv">2,600 pieces since 2014. Seven tables came back to us, <em>all of them to be made longer.</em></p>
     </div>
   </section>
 
@@ -250,8 +361,8 @@
         <div class="f"><label for="o-name">Name</label><input id="o-name" name="name" autocomplete="name" required><p class="err" hidden>Write your name.</p></div>
         <div class="f"><label for="o-mail">Email</label><input id="o-mail" name="email" type="email" inputmode="email" autocomplete="email" required><p class="err" hidden>Write an email with an @.</p></div>
         <div class="f"><label for="o-city">City</label><input id="o-city" name="city" autocomplete="address-level2" required><p class="err" hidden>Where should we deliver?</p></div>
-        <div class="f"><label for="o-what">I would like to</label><select id="o-what" name="what"><option>Reserve this table</option><option>Order wood samples (€15)</option><option>Visit the workshop</option></select></div>
-        <div class="f f--full"><label for="o-table">Your table</label><textarea id="o-table" name="table" rows="2" readonly data-cfg-text></textarea></div>
+        <div class="f"><label for="o-what">I would like to</label><select id="o-what" name="what"><option>Reserve this table</option><option>Request a quote for my order list</option><option>Order wood samples (€15)</option><option>Visit the workshop</option></select></div>
+        <div class="f f--full"><label for="o-table">Your table and pieces</label><textarea id="o-table" name="table" rows="2" readonly data-cfg-text></textarea></div>
         <div class="f f--full"><label for="o-msg">Anything else <span class="muted">(optional)</span></label><textarea id="o-msg" name="msg" rows="3"></textarea></div>
         <button class="btn btn--wide" type="submit">Send</button>
         <p class="small" role="status" data-status></p>
@@ -270,12 +381,55 @@
   </div>
 </footer>
 
-<nav class="bar" data-bar aria-label="Quick actions"><span class="bar__p" data-bar-price>€2,010</span><a class="btn" href="#build" data-bar-btn>Build yours</a></nav>
+<nav class="bar" data-bar aria-label="Quick actions"><button type="button" class="bar__p" data-list-open>Order list · <span data-ototal-bar>empty</span></button><a class="btn" href="#collection" data-bar-btn>Collection</a></nav>
 
 <div class="lb" data-lb hidden role="dialog" aria-modal="true" aria-label="Photos">
   <div class="lb__top"><span class="mono" data-lb-count>1 / 4</span><button type="button" class="lb__x" data-lb-close aria-label="Close">×</button></div>
   <ul class="lb__track" data-lb-track></ul>
   <p class="lb__cap" data-lb-cap></p>
+</div>
+
+<div class="qv" data-qv-modal hidden role="dialog" aria-modal="true" aria-labelledby="qv-h">
+  <div class="qv__scrim" data-qv-close></div>
+  <div class="qv__box">
+    <button type="button" class="qv__x" data-qv-close aria-label="Close">×</button>
+    <div class="qv__stage stage" data-qv-stage data-spin="1"><p class="stage__wait mono">Building it in 3D…</p><span class="stage__hint mono"><svg viewBox="0 0 24 12" aria-hidden="true"><path d="M2 6h20M6 2 2 6l4 4M18 2l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Drag to turn</span>
+      <button type="button" class="ar qv__ar" data-qv-ar><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2 3 6v8l7 4 7-4V6l-7-4Zm0 0v8m0 0 7-4m-7 4-7-4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><span>In your room</span></button>
+      <p class="ar__note" data-qv-note hidden></p>
+    </div>
+    <div class="qv__info">
+      <p class="mono label" data-qv-cat>Seating</p>
+      <h2 id="qv-h" data-qv-name>Rasa dining chair</h2>
+      <p class="qv__desc" data-qv-desc></p>
+      <form class="qv__opts" data-qv-form onsubmit="return false">
+        <fieldset><legend>Wood</legend><div class="woods woods--s">
+          <label><input type="radio" name="wood" value="oak" checked><span><i class="sw sw--oak"></i><b>Oak</b></span></label>
+          <label><input type="radio" name="wood" value="ash"><span><i class="sw sw--ash"></i><b>Ash</b></span></label>
+          <label><input type="radio" name="wood" value="walnut"><span><i class="sw sw--walnut"></i><b>Walnut</b></span></label></div></fieldset>
+        <fieldset><legend>Finish</legend><div class="seg"><label><input type="radio" name="finish" value="natural" checked><span>Natural</span></label><label><input type="radio" name="finish" value="white"><span>White oil</span></label><label><input type="radio" name="finish" value="dark"><span>Dark oil</span></label></div></fieldset>
+        <fieldset data-qv-fab><legend>Fabric <output data-qv-fabname>Oat linen</output></legend><div class="fabs">
+          <label title="Oat linen"><input type="radio" name="fabric" value="oat" checked><i style="background:#d9cfbd"></i></label>
+          <label title="Moss wool"><input type="radio" name="fabric" value="moss"><i style="background:#5f6b4e"></i></label>
+          <label title="Rust bouclé"><input type="radio" name="fabric" value="rust"><i style="background:#a65a3a"></i></label>
+          <label title="Charcoal wool"><input type="radio" name="fabric" value="charcoal"><i style="background:#3b3b3a"></i></label>
+          <label title="Sky cotton"><input type="radio" name="fabric" value="sky"><i style="background:#9fb3bf"></i></label></div></fieldset>
+        <fieldset data-qv-uph><legend>Seat</legend><div class="seg seg--2"><label><input type="radio" name="uph" value="0" checked><span>Solid wood</span></label><label><input type="radio" name="uph" value="1"><span>Upholstered +€60</span></label></div></fieldset>
+        <div class="qv__buy">
+          <div><p class="price" data-qv-price>€390</p><p class="small muted" data-qv-meta>46 × 52 × 79 cm · ready in 6–8 weeks</p></div>
+          <div class="qty"><button type="button" data-qty="-1" aria-label="One less">−</button><b data-qty-n>1</b><button type="button" data-qty="1" aria-label="One more">+</button></div>
+        </div>
+        <button class="btn btn--wide" type="button" data-qv-add>Add to order list</button>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="drawer" data-drawer hidden>
+  <div class="drawer__scrim" data-list-close></div>
+  <aside class="drawer__panel" role="dialog" aria-modal="true" aria-labelledby="list-h">
+    <div class="drawer__head"><h2 id="list-h">Your order list</h2><button type="button" class="qv__x" data-list-close aria-label="Close">×</button></div>
+    <ul class="olist" data-olist></ul>
+    <div class="drawer__foot"><div class="tot"><span>Estimated total</span><b data-otot>€0</b></div><p class="small muted">Delivery and assembly in Lithuania included. We confirm every price with a drawing before you pay anything.</p><a class="btn btn--wide" href="#order" data-list-quote>Request a quote</a></div>
+  </aside>
 </div>
 <div class="toast" data-toast role="status" aria-live="polite"></div>
 <script type="module" src="app.js"></script>

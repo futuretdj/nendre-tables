@@ -1,5 +1,6 @@
 // Nendrė — page logic: 3D mount, configurator, price, AR, swipe rows, lightbox, form
 import { createViewer } from './table3d.js';
+import './collection.js';
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const TOUCH = document.documentElement.classList.contains('touch');
@@ -71,7 +72,6 @@ function animPrice(to) {
   const el = $('[data-price]'), from = shown, t0 = performance.now();
   const step = t => { const k = Math.min(1, (t - t0) / 450), v = from + (to - from) * (1 - (1 - k) ** 3); el.textContent = eur(v); if (k < 1) requestAnimationFrame(step); };
   shown = to; requestAnimationFrame(step);
-  $('[data-bar-price]').textContent = eur(to);
 }
 function text(c) { return `${NAMES[c.wood]}, ${c.L} × ${c.W} cm, ${NAMES[c.shape]}, ${NAMES[c.base]}, ${NAMES[c.finish]} — ${eur(calc(c).price)}`; }
 let raf = 0;
@@ -85,7 +85,7 @@ function update(fromUser = true) {
   $('[data-boards]').textContent = Math.max(4, Math.round(c.W / 100 / .14));
   $('[data-legtext]').textContent = { taper: 'Tapered leg, 6.2 → 3.6 cm', panel: 'Solid 4.5 cm panel, wedged', steel: 'Powder-coated steel, bolted to a wooden rail' }[c.base];
   seatsSVG(c, s); animPrice(s.price);
-  $('[data-cfg-text]').value = text(c);
+  window.__cfgText = text(c); document.dispatchEvent(new Event('cfgtext'));
   cancelAnimationFrame(raf);
   raf = requestAnimationFrame(() => { pendingSet = { wood: c.wood, L: c.L / 100, W: c.W / 100, shape: c.shape, base: c.base, finish: c.finish }; if (viewer) viewer.set(pendingSet); });
   if (fromUser) history.replaceState(null, '', '#build?' + new URLSearchParams(Object.entries(c)).toString());
@@ -206,7 +206,7 @@ let tt; function toast(t) { const el = $('[data-toast]'); el.textContent = t; el
 (() => {
   const idle = window.requestIdleCallback || (f => setTimeout(() => f({ timeRemaining: () => 8 }), 120));
   const urls = ['tex/oak_sw.webp', 'tex/ash_sw.webp', 'tex/walnut_sw.webp'];
-  const imgs = $$('img[loading="lazy"]');
+  const imgs = $$('img[loading="lazy"]').filter(i => !(TOUCH && i.classList.contains('pcard__alt')));
   let i = 0;
   let still = 0; addEventListener('scroll', () => { still = performance.now(); }, { passive: true });
   const next = () => idle(async () => {
