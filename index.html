@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nendrė — solid-wood dining tables made to your length in Kaunas</title>
+<meta name="description" content="Oak, ash and walnut dining tables built one at a time in Kaunas, Lithuania. Choose the size to the centimetre, see it in 3D and in your room, delivered and assembled.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nendrė — solid-wood tables, built to your length">
+<meta property="og:description" content="Design your table in 3D: wood, length, shape and base. Made by hand in Kaunas.">
+<meta property="og:image" content="https://futuretdj.github.io/nendre-tables/share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#eeede8">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=Inter:wght@400..600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="modulepreload" href="lib/three.module.min.js">
+<link rel="modulepreload" href="table3d.js">
+<link rel="preload" as="image" href="tex/oak_d1.webp" type="image/webp">
+<script type="importmap">{"imports":{"three":"./lib/three.module.min.js"}}</script>
+<script>(function(){var d=document.documentElement;if(matchMedia('(max-width: 1023px), (pointer: coarse)').matches)d.classList.add('touch');d.classList.add('js');setTimeout(function(){d.classList.add('rv-safe')},4000)})()</script>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="nav" data-nav>
+  <div class="wrap nav__bar">
+    <a class="logo" href="#top" aria-label="Nendrė, home"><svg viewBox="0 0 30 30" aria-hidden="true"><path d="M8 27c1.5-7 2-14 .5-24M15 27c0-8 .8-15 4-22M22 27c-.6-5 .2-10 2.6-14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M19 5c1.6.4 3 .1 4-1" fill="none" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round"/></svg><span>Nendrė</span></a>
+    <nav class="nav__links" aria-label="Main">
+      <a href="#build">Build yours</a><a href="#woods">Woods</a><a href="#workshop">Workshop</a><a href="#delivery">Delivery</a><a href="#order">Visit &amp; order</a>
+    </nav>
+    <a class="btn btn--ghost nav__cta" href="#samples">Order wood samples</a>
+    <button class="nav__menu" type="button" aria-expanded="false" aria-controls="sheet" data-menu><span></span><span></span><b>Menu</b></button>
+  </div>
+  <div class="sheet" id="sheet" data-sheet>
+    <a href="#build">Build your table</a><a href="#woods">Oak, ash, walnut</a><a href="#workshop">The workshop</a><a href="#delivery">Delivery &amp; guarantee</a><a href="#order">Visit &amp; order</a>
+    <p class="mono">Kaunas · Aleksotas · Sat 10–15 by appointment</p>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div class="hero__text">
+        <p class="eyebrow mono"><span class="pulse"></span>Workshop open · 11 tables in progress</p>
+        <h1>Solid-wood tables, built to your length</h1>
+        <p class="lead">Made one at a time in our workshop in Kaunas, from oak, ash or walnut. Pick the size to the centimetre, turn it in 3D, then stand it in your own room with your phone.</p>
+        <div class="row">
+          <a class="btn" href="#build">Build your table</a>
+          <a class="btn btn--ghost" href="#samples">Wood samples · €15</a>
+        </div>
+      </div>
+      <div class="stage stage--hero" data-stage="hero" data-spin="1">
+        <p class="stage__wait mono" data-wait>Planing the boards…</p>
+        <span class="stage__hint mono"><svg viewBox="0 0 24 12" aria-hidden="true"><path d="M2 6h20M6 2 2 6l4 4M18 2l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Drag to turn</span>
+      </div>
+    </div>
+    <div class="wrap">
+      <dl class="facts">
+        <div><dt>From</dt><dd>€1,290</dd></div>
+        <div><dt>Made in</dt><dd>6–8 weeks</dd></div>
+        <div><dt>Delivery in Lithuania</dt><dd>Free, assembled</dd></div>
+        <div><dt>Guarantee on joints</dt><dd>25 years</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- configurator -->
+  <section class="sec" id="build" aria-labelledby="build-h">
+    <div class="wrap">
+      <div class="head rv">
+        <p class="mono label">Configurator</p>
+        <h2 id="build-h">Your table, to the centimetre</h2>
+        <p>Every change is drawn the way it will be made: the boards, the edge, the joints. The price is the price, delivery and assembly in Lithuania included.</p>
+      </div>
+      <div class="cfg" data-cfg>
+        <div class="cfg__stagewrap">
+          <div class="stage stage--cfg" data-stage="cfg">
+            <div class="labels" data-labels hidden>
+              <span class="lab" data-lab="top"><i></i>Top: 4 cm, glued from <b data-boards>7</b> boards</span>
+              <span class="lab" data-lab="tenon"><i></i>Mortise and tenon. No screws, no metal</span>
+              <span class="lab" data-lab="leg"><i></i><b data-legtext>Tapered leg, 6.2 → 3.6 cm</b></span>
+            </div>
+            <div class="stage__tools">
+              <div class="tog" role="group" aria-label="View">
+                <button type="button" aria-pressed="true" data-view="0">Assembled</button>
+                <button type="button" aria-pressed="false" data-view="1">How it's built</button>
+              </div>
+              <button type="button" class="ar" data-ar><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2 3 6v8l7 4 7-4V6l-7-4Zm0 0v8m0 0 7-4m-7 4-7-4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><span>See it in your room</span></button>
+            </div>
+            <p class="ar__note" data-ar-note hidden></p>
+          </div>
+        </div>
+        <form class="panel" data-panel onsubmit="return false" aria-label="Configure your table">
+          <fieldset><legend>Wood</legend>
+            <div class="woods">
+              <label><input type="radio" name="wood" value="oak" checked><span><i class="sw sw--oak"></i><b>Oak</b><small>Lithuanian, FSC</small></span></label>
+              <label><input type="radio" name="wood" value="ash"><span><i class="sw sw--ash"></i><b>Ash</b><small>Pale, springy grain</small></span></label>
+              <label><input type="radio" name="wood" value="walnut"><span><i class="sw sw--walnut"></i><b>Walnut</b><small>French, dark</small></span></label>
+            </div></fieldset>
+          <fieldset><legend>Length <output data-out="L">220 cm</output></legend>
+            <input class="range" type="range" name="L" min="160" max="280" step="10" value="220" aria-label="Length in centimetres">
+            <div class="ticks mono"><span>160</span><span>200</span><span>240</span><span>280</span></div>
+          </fieldset>
+          <fieldset><legend>Width</legend>
+            <div class="seg"><label><input type="radio" name="W" value="90"><span>90 cm</span></label><label><input type="radio" name="W" value="100" checked><span>100 cm</span></label><label><input type="radio" name="W" value="110"><span>110 cm</span></label></div></fieldset>
+          <fieldset><legend>Shape</legend>
+            <div class="seg"><label><input type="radio" name="shape" value="rect" checked><span>Straight</span></label><label><input type="radio" name="shape" value="soft"><span>Soft corners</span></label><label><input type="radio" name="shape" value="oval"><span>Oval</span></label></div></fieldset>
+          <fieldset><legend>Base</legend>
+            <div class="seg"><label><input type="radio" name="base" value="taper" checked><span>Tapered legs</span></label><label><input type="radio" name="base" value="panel"><span>Solid panels</span></label><label><input type="radio" name="base" value="steel"><span>Black steel</span></label></div></fieldset>
+          <fieldset><legend>Finish</legend>
+            <div class="seg"><label><input type="radio" name="finish" value="natural" checked><span>Natural oil</span></label><label><input type="radio" name="finish" value="white"><span>White oil</span></label><label><input type="radio" name="finish" value="dark"><span>Dark oil</span></label></div></fieldset>
+          <div class="sum">
+            <div class="sum__top">
+              <div><p class="mono muted">Your table</p><p class="price" data-price>€2,010</p></div>
+              <svg class="seats" viewBox="0 0 160 90" aria-hidden="true" data-seats></svg>
+            </div>
+            <ul class="spec mono">
+              <li><span>Seats</span><b data-o="seats">8–10 people</b></li>
+              <li><span>Weight</span><b data-o="kg">78 kg</b></li>
+              <li><span>Ready</span><b data-o="ready">mid-January</b></li>
+            </ul>
+            <div class="row">
+              <a class="btn btn--wide" href="#order" data-reserve>Reserve this table</a>
+              <button class="btn btn--ghost" type="button" data-share>Copy link</button>
+            </div>
+            <p class="small muted">30% deposit to book a workshop slot, the rest on delivery. Change anything until the boards are cut.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--quote">
+    <div class="wrap">
+      <p class="big rv">1,180 tables since 2014. Seven came back to us, <em>all of them to be made longer.</em></p>
+    </div>
+  </section>
+
+  <!-- woods -->
+  <section class="sec" id="woods" aria-labelledby="woods-h">
+    <div class="wrap">
+      <div class="head rv"><p class="mono label">Three woods</p><h2 id="woods-h">Each one ages differently</h2><p>We work with three species only, so we know every board. Tap one to try it on your table.</p></div>
+      <div class="wcards" data-swipe>
+        <article class="wcard rv">
+          <div class="wcard__sw sw--oak"></div>
+          <div class="wcard__body">
+            <h3>European oak</h3>
+            <p>From FSC forests near Biržai and Anykščiai. Strong, heavy, with silver ray flecks you see when the light is low. It turns from straw to a warm honey colour in about two years.</p>
+            <ul class="spec mono"><li><span>Hardness</span><b>Janka 1,360</b></li><li><span>Ages to</span><b>Honey</b></li><li><span>From</span><b>€1,420</b></li></ul>
+            <button class="btn btn--ghost" type="button" data-pick="oak">Try oak</button>
+          </div>
+        </article>
+        <article class="wcard rv">
+          <div class="wcard__sw sw--ash"></div>
+          <div class="wcard__body">
+            <h3>Ash</h3>
+            <p>Pale and calm, with a long straight grain. Lighter than oak and slightly springy, so it forgives a dropped pan. With white oil it stays almost Nordic white.</p>
+            <ul class="spec mono"><li><span>Hardness</span><b>Janka 1,320</b></li><li><span>Ages to</span><b>Soft cream</b></li><li><span>From</span><b>€1,290</b></li></ul>
+            <button class="btn btn--ghost" type="button" data-pick="ash">Try ash</button>
+          </div>
+        </article>
+        <article class="wcard rv">
+          <div class="wcard__sw sw--walnut"></div>
+          <div class="wcard__body">
+            <h3>European walnut</h3>
+            <p>From one sawmill in the Dordogne, cut and dried for three years before it reaches us. Deep brown with purple notes that soften to a mellow, golden brown.</p>
+            <ul class="spec mono"><li><span>Hardness</span><b>Janka 1,010</b></li><li><span>Ages to</span><b>Golden brown</b></li><li><span>From</span><b>€2,090</b></li></ul>
+            <button class="btn btn--ghost" type="button" data-pick="walnut">Try walnut</button>
+          </div>
+        </article>
+      </div>
+      <div class="dots" data-dots-for="wcards"></div>
+    </div>
+  </section>
+
+  <!-- workshop -->
+  <section class="sec sec--dark" id="workshop" aria-labelledby="ws-h">
+    <div class="wrap">
+      <div class="head rv"><p class="mono label">The workshop</p><h2 id="ws-h">Six people, one table at a time</h2><p>Nothing is outsourced. The same two hands that choose your boards fit the last joint and oil the top. Swipe the steps, tap a photo to see it larger.</p></div>
+    </div>
+    <ol class="steps" data-swipe data-gallery>
+      <li class="step"><button type="button" class="step__pic" data-open="0"><img src="assets/img/photo-f66408204-960.webp" srcset="assets/img/photo-f66408204-500.webp 500w, assets/img/photo-f66408204-960.webp 960w, assets/img/photo-f66408204.webp 1280w" sizes="(max-width: 639px) 78vw, 380px" alt="A freshly sanded oak board with the grain showing" loading="lazy" decoding="async"></button><p class="mono">01 · Week 1</p><h3>Dried to 8%</h3><p>The timber rests in our kiln and then in the workshop for three weeks, so it settles to the air of a heated home before we cut it.</p></li>
+      <li class="step"><button type="button" class="step__pic" data-open="1"><img src="assets/img/photo-f95830909-960.webp" srcset="assets/img/photo-f95830909-500.webp 500w, assets/img/photo-f95830909-960.webp 960w" sizes="(max-width: 639px) 78vw, 380px" alt="A hand plane resting on a planed board" loading="lazy" decoding="async"></button><p class="mono">02 · Week 3</p><h3>Boards matched by eye</h3><p>We lay out every board of your top on the floor and move them until the grain flows across. This takes longer than gluing them.</p></li>
+      <li class="step"><button type="button" class="step__pic" data-open="2"><img src="assets/img/photo-f95606378-960.webp" srcset="assets/img/photo-f95606378-500.webp 500w, assets/img/photo-f95606378-960.webp 960w, assets/img/photo-f95606378.webp 1280w" sizes="(max-width: 639px) 78vw, 380px" alt="A router plane on the workbench, used to cut joints" loading="lazy" decoding="async"></button><p class="mono">03 · Week 5</p><h3>Joints cut by hand</h3><p>Mortise and tenon, wedged and glued. The top floats on the frame on wooden buttons, so it can move with the seasons and never cracks.</p></li>
+      <li class="step"><button type="button" class="step__pic" data-open="3"><img src="assets/img/photo-f81309000-960.webp" srcset="assets/img/photo-f81309000-500.webp 500w, assets/img/photo-f81309000-960.webp 960w, assets/img/photo-f81309000.webp 1280w" sizes="(max-width: 639px) 78vw, 380px" alt="Chisels, a saw and a marking gauge on a pegboard" loading="lazy" decoding="async"></button><p class="mono">04 · Week 7</p><h3>Three coats of oil</h3><p>A hard-wax oil from Germany, rubbed in by hand with a day between coats. Water beads on it; a scratch can be sanded out at home.</p></li>
+    </ol>
+    <div class="wrap"><div class="dots dots--light" data-dots-for="steps"></div></div>
+  </section>
+
+  <!-- reviews -->
+  <section class="sec" id="reviews" aria-labelledby="rv-h">
+    <div class="wrap">
+      <div class="head rv"><p class="mono label">From homes in 14 countries</p><h2 id="rv-h">“We measured the room twice. It fits to the centimetre.”</h2></div>
+      <div class="quotes" data-swipe>
+        <figure class="q rv"><blockquote>We wanted a table for twelve that still lets us walk round it. Rasa came to measure, suggested an oval at 260 and she was right.</blockquote><figcaption><b>Indrė &amp; Tomas</b><span class="mono">Vilnius · oak, oval, 260 × 110</span></figcaption></figure>
+        <figure class="q rv"><blockquote>Delivered to the fourth floor in Riga, assembled in forty minutes, and they took all the packaging back with them.</blockquote><figcaption><b>Mārtiņš K.</b><span class="mono">Riga · walnut, steel base, 200 × 100</span></figcaption></figure>
+        <figure class="q rv"><blockquote>The 3D view was exactly what arrived. I put it in the room with my phone first and moved the sofa before it came.</blockquote><figcaption><b>Sophie L.</b><span class="mono">Berlin · ash, white oil, 180 × 90</span></figcaption></figure>
+      </div>
+      <div class="dots" data-dots-for="quotes"></div>
+    </div>
+  </section>
+
+  <!-- delivery -->
+  <section class="sec sec--alt" id="delivery" aria-labelledby="dl-h">
+    <div class="wrap grid2">
+      <div class="head rv"><p class="mono label">Delivery, guarantee, care</p><h2 id="dl-h">We bring it in and build it on the spot</h2><p>Two of us come with the table in our own van, carry it in, assemble it and level it. It takes about forty minutes.</p></div>
+      <ul class="rows rv">
+        <li><span>Lithuania</span><b>Free, assembled</b></li>
+        <li><span>Latvia, Estonia</span><b>€190, assembled</b></li>
+        <li><span>Poland, Germany, Nordics</span><b>From €290, by quote</b></li>
+        <li><span>Guarantee</span><b>25 years on joints, 5 on finish</b></li>
+        <li><span>In the box</span><b>Care kit, oil, two cloths</b></li>
+        <li><span>Payment</span><b>30% deposit, rest on delivery</b></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="faq" aria-labelledby="faq-h">
+    <div class="wrap grid2">
+      <div class="head rv"><h2 id="faq-h">Questions</h2><p>Anything else: <a href="mailto:hello@nendre.example">hello@nendre.example</a> or +370 600 00000.</p></div>
+      <div class="faq rv">
+        <details><summary>Does the 3D view match the real table?</summary><p>The shape, the size and the joinery do, exactly. Wood is a natural material, so the grain on your top will be its own; that is why we send a photo of your boards laid out before we glue them, and you can ask for a change.</p></details>
+        <details><summary>How does “See it in your room” work?</summary><p>On an iPhone or iPad, tap the button and the table opens in Apple's AR view at its real size. Point the camera at the floor and walk round it. Nothing is installed and nothing is uploaded.</p></details>
+        <details><summary>Can I have a size that is not in the list?</summary><p>Yes. Any length from 120 to 320 cm and any width from 75 to 120 cm costs the same per square metre. Write to us with the size.</p></details>
+        <details><summary>Will a solid top crack under floor heating?</summary><p>No, because the top is never screwed down. It sits on wooden buttons that let it move a few millimetres each season. Keep it about a metre from a radiator, as with any solid wood.</p></details>
+        <details><summary>How do I look after it?</summary><p>Wipe it with a damp cloth. Once a year, rub in a little of the oil from the care kit. Rings and small scratches sand out with the pad in the kit.</p></details>
+        <details><summary>Can I see the tables before I order?</summary><p>Yes. The workshop and a small showroom with eight tables are open on Saturdays from 10 to 15, by appointment. Book a visit below.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- order + visit -->
+  <section class="sec sec--alt" id="order" aria-labelledby="or-h">
+    <div class="wrap grid2">
+      <div class="head rv">
+        <p class="mono label">Reserve or visit</p>
+        <h2 id="or-h">Book a workshop slot</h2>
+        <p>Send us your table and we reply within one working day with a drawing, the date your boards will be cut and the deposit link.</p>
+        <div class="visit" id="samples">
+          <h3>Wood samples, €15</h3>
+          <p>Three 10 × 10 cm pieces of oak, ash and walnut in all three finishes, by post in 3 days. The €15 comes off your table.</p>
+          <h3>The workshop</h3>
+          <p>Kaunas, Aleksotas. Saturdays 10:00–15:00, by appointment. Free parking in the yard.</p>
+        </div>
+      </div>
+      <form class="form" data-form novalidate>
+        <div class="f"><label for="o-name">Name</label><input id="o-name" name="name" autocomplete="name" required><p class="err" hidden>Write your name.</p></div>
+        <div class="f"><label for="o-mail">Email</label><input id="o-mail" name="email" type="email" inputmode="email" autocomplete="email" required><p class="err" hidden>Write an email with an @.</p></div>
+        <div class="f"><label for="o-city">City</label><input id="o-city" name="city" autocomplete="address-level2" required><p class="err" hidden>Where should we deliver?</p></div>
+        <div class="f"><label for="o-what">I would like to</label><select id="o-what" name="what"><option>Reserve this table</option><option>Order wood samples (€15)</option><option>Visit the workshop</option></select></div>
+        <div class="f f--full"><label for="o-table">Your table</label><textarea id="o-table" name="table" rows="2" readonly data-cfg-text></textarea></div>
+        <div class="f f--full"><label for="o-msg">Anything else <span class="muted">(optional)</span></label><textarea id="o-msg" name="msg" rows="3"></textarea></div>
+        <button class="btn btn--wide" type="submit">Send</button>
+        <p class="small" role="status" data-status></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p class="foot__big">Nendrė</p>
+    <div class="foot__row">
+      <p>Solid-wood tables made in Kaunas, Lithuania.<br><a href="mailto:hello@nendre.example">hello@nendre.example</a></p>
+      <p class="mono muted">A concept site · Photographs via Wikimedia Commons (<a href="credits.html">credits</a>) · Wood textures: Poly Haven, CC0</p>
+    </div>
+  </div>
+</footer>
+
+<nav class="bar" data-bar aria-label="Quick actions"><span class="bar__p" data-bar-price>€2,010</span><a class="btn" href="#build" data-bar-btn>Build yours</a></nav>
+
+<div class="lb" data-lb hidden role="dialog" aria-modal="true" aria-label="Photos">
+  <div class="lb__top"><span class="mono" data-lb-count>1 / 4</span><button type="button" class="lb__x" data-lb-close aria-label="Close">×</button></div>
+  <ul class="lb__track" data-lb-track></ul>
+  <p class="lb__cap" data-lb-cap></p>
+</div>
+<div class="toast" data-toast role="status" aria-live="polite"></div>
+<script type="module" src="app.js"></script>
+</body>
+</html>

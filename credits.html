@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nendrė — solid-wood dining tables made to your length in Kaunas: photograph credits</title>
+<meta name="description" content="The photographers, licences and source pages of the photographs on the Nendrė — solid-wood dining tables made to your length in Kaunas website.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nendrė — solid-wood tables, built to your length">
+<meta property="og:description" content="Design your table in 3D: wood, length, shape and base. Made by hand in Kaunas.">
+<meta property="og:image" content="https://futuretdj.github.io/nendre-tables/share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#eeede8">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=Inter:wght@400..600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="modulepreload" href="lib/three.module.min.js">
+<link rel="modulepreload" href="table3d.js">
+<link rel="preload" as="image" href="tex/oak_d1.webp" type="image/webp">
+<script type="importmap">{"imports":{"three":"./lib/three.module.min.js"}}</script>
+<script>(function(){var d=document.documentElement;if(matchMedia('(max-width: 1023px), (pointer: coarse)').matches)d.classList.add('touch');d.classList.add('js');setTimeout(function(){d.classList.add('rv-safe')},4000)})()</script>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="nav" data-nav>
+  <div class="wrap nav__bar">
+    <a class="logo" href="#top" aria-label="Nendrė, home"><svg viewBox="0 0 30 30" aria-hidden="true"><path d="M8 27c1.5-7 2-14 .5-24M15 27c0-8 .8-15 4-22M22 27c-.6-5 .2-10 2.6-14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M19 5c1.6.4 3 .1 4-1" fill="none" stroke="var(--accent)" stroke-width="1.7" stroke-linecap="round"/></svg><span>Nendrė</span></a>
+    <nav class="nav__links" aria-label="Main">
+      <a href="#build">Build yours</a><a href="#woods">Woods</a><a href="#workshop">Workshop</a><a href="#delivery">Delivery</a><a href="#order">Visit &amp; order</a>
+    </nav>
+    <a class="btn btn--ghost nav__cta" href="#samples">Order wood samples</a>
+    <button class="nav__menu" type="button" aria-expanded="false" aria-controls="sheet" data-menu><span></span><span></span><b>Menu</b></button>
+  </div>
+  <div class="sheet" id="sheet" data-sheet>
+    <a href="#build">Build your table</a><a href="#woods">Oak, ash, walnut</a><a href="#workshop">The workshop</a><a href="#delivery">Delivery &amp; guarantee</a><a href="#order">Visit &amp; order</a>
+    <p class="mono">Kaunas · Aleksotas · Sat 10–15 by appointment</p>
+  </div>
+</header>
+
+<main id="top">
+  <p><a class="link" href="index.html">Nendrė — solid-wood dining tables made to your length in Kaunas</a></p>
+  <section class="credits-list" id="credits" aria-labelledby="credits-h">
+    <h1 id="credits-h">Photograph credits</h1>
+    <ul>
+      <li><a href="https://commons.wikimedia.org/wiki/File:Stanley_No.6_Fore_plane.jpg">Andrew Fogg</a>, <a href="https://creativecommons.org/licenses/by/2.0">CC BY 2.0</a></li>
+      <li><a href="https://commons.wikimedia.org/wiki/File:Stanley_router_plane_No.71.jpg">J Jongsma</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0">CC BY-SA 2.0</a></li>
+      <li><a href="https://commons.wikimedia.org/wiki/File:Woodworking_Tools_at_the_Women%27s_Woodshop_in_Minneapolis,_MN.jpg">Terasaface</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a></li>
+      <li><a href="https://commons.wikimedia.org/wiki/File:Sanded_wood.jpg">Kauraleipälaatikko</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p class="foot__big">Nendrė</p>
+    <div class="foot__row">
+      <p>Solid-wood tables made in Kaunas, Lithuania.<br><a href="mailto:hello@nendre.example">hello@nendre.example</a></p>
+      <p class="mono muted">A concept site · Photographs via Wikimedia Commons (<a href="credits.html">credits</a>) · Wood textures: Poly Haven, CC0</p>
+    </div>
+  </div>
+</footer>
+
+<nav class="bar" data-bar aria-label="Quick actions"><span class="bar__p" data-bar-price>€2,010</span><a class="btn" href="#build" data-bar-btn>Build yours</a></nav>
+
+<div class="lb" data-lb hidden role="dialog" aria-modal="true" aria-label="Photos">
+  <div class="lb__top"><span class="mono" data-lb-count>1 / 4</span><button type="button" class="lb__x" data-lb-close aria-label="Close">×</button></div>
+  <ul class="lb__track" data-lb-track></ul>
+  <p class="lb__cap" data-lb-cap></p>
+</div>
+<div class="toast" data-toast role="status" aria-live="polite"></div>
+<script type="module" src="app.js"></script>
+</body>
+</html>
